@@ -20,3 +20,6 @@ grep -Ff 50_lipids_change_over_time.txt 6_months_log_delta.QuantileNormalized.Co
 
 #### capture command output while also viewing it live
 command |& tee outputfile.txt
+
+## Covert a comma seperated file with tab and print selected columns (col1 and col2 in the below example)
+sed 's/,/\t/g' GSA-24v3-0_A1_b151_rsids.txt |awk '{print $1"\t"$2}' >GSA-24v3_update_map.txt
