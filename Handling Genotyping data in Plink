@@ -1,0 +1,18 @@
+##Update variant information
+
+##Update the rsids in a bim file based on the array file 
+plink --noweb --bfile BSIG_Juli2020 --update-name GSA-24v2_update_map.txt 2 1 --make-bed --out BSIG_update_name
+
+## Update empty rsids with chr:pos
+plink --noweb --bfile filtered_BSIG --set-missing-var-ids @:#[b37]\$1,\$2 --make-bed --out BSIG_final
+
+## List duplicate variants
+-plink --noweb --bfile filtered_BSIG --list-duplicate-vars --out duplicate_vars
+
+## Filter a dataset with MAF, GENO and MIND
+plink --noweb --bfile BSIG_update_name --chr 1-24 --geno 0.1 --maf 0.05 --hwe 0.001 --mind 0.05 --make-bed --out filtered_BSIG
+
+## Merge two datasets 
+plink --noweb --bfile filtered_BSIG --bmerge dk3a_hg19/dk3a_filter.bed dk3a_hg19/dk3a_filter.bim dk3a_hg19/dk3a_filter.fam  --make-bed --out merged
+
+
