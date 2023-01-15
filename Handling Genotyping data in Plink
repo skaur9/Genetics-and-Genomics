@@ -16,3 +16,16 @@ plink --noweb --bfile BSIG_update_name --chr 1-24 --geno 0.1 --maf 0.05 --hwe 0.
 plink --noweb --bfile filtered_BSIG --bmerge dk3a_hg19/dk3a_filter.bed dk3a_hg19/dk3a_filter.bim dk3a_hg19/dk3a_filter.fam  --make-bed --out merged
 
 
+
+################################
+### make one file for each chr
+
+for chr in {1..22}; do \
+plink --bfile ../filtered_BSIG --chr $chr --make-bed --out filtered_BSIG_chr${chr}; \
+done
+
+## make vcf files
+
+for chr in {1..22}; do \
+plink --noweb --bfile filtered_BSIG_chr${chr} --recode vcf --keep-allele-order --out filtered_BSIG_chr${chr};\
+done
