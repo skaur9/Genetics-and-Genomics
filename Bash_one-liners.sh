@@ -1,3 +1,9 @@
+## Print the first line (header) of your file:
+cat data.tsv | head -1
+
+## Convert tabs to newlines using tr, and number each column with cat -n
+cat data.tsv | head -1 | tr "\t" "\n" | cat -n
+
 ## Sum of one column
 awk 'BEGIN {FS = "\t"} ; {sum+=$3} END {print sum}' sample_01-02.mirna
 
@@ -17,9 +23,16 @@ shuf 15957_non_T1D_T2D_islet_exp_genes.txt |head -100
 ###### Grep keywords from a file
 grep -Ff 50_lipids_change_over_time.txt 6_months_log_delta.QuantileNormalized.CovariatesRemoved.txt >6_months_50_lipids
 
-
 #### capture command output while also viewing it live
 command |& tee outputfile.txt
 
+## Extract any specific line using sed (Replace N with any number)
+cat data.txt | sed -n 'Np'
+cat data.txt | sed -n '2p' #Extract 2nd line
+
 ## Covert a comma seperated file with tab and print selected columns (col1 and col2 in the below example)
 sed 's/,/\t/g' GSA-24v3-0_A1_b151_rsids.txt |awk '{print $1"\t"$2}' >GSA-24v3_update_map.txt
+
+## Use csvcut for cleaner output
+csvcut -nt -l data.txt
+
