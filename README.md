@@ -5,7 +5,7 @@ Welcome! This site provides quick-reference command-line tips, bash one-liners, 
 ### 🔧 Contents
 
 - 📂 [Bash One-Liners](Bash_one-liners.md)
-- 🧬 [PLINK Commands](plink_commands.md)
+- 🧬 [PLINK Commands](Plink_Commands.md)
 - 📦 [VCF/BCF Tools](vcf_tools.md)
 - 🔍 [Association Testing](association_testing.md)
 - 🧮 [Imputation](imputation.md)
