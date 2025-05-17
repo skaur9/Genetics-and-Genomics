@@ -1,0 +1,54 @@
+ ---
+title: "Common Plots for genetic assoiation studies "
+author: "Simranjeet Kaur"
+format: html
+editor: visual
+---
+
+```{r setup}
+library(qqman)
+library(ggplot2)
+library(pheatmap)
+library(pROC)
+```
+
+### Manhattan plot with R
+```{r}
+data <- read.table("assoc_results.assoc", header=TRUE)
+manhattan(data, chr="CHR", bp="BP", p="P", snp="SNP")
+```
+
+### QQ plot with R
+```{r}
+qq(data$P, main="QQ Plot of P-values")
+```
+
+### PCA plot using PLINK and ggplot2
+```bash
+plink --bfile data --pca 10 --out pca
+```
+```{r}
+pca <- read.table("pca.eigenvec", header=FALSE)
+colnames(pca) <- c("FID", "IID", paste0("PC", 1:10))
+
+ggplot(pca, aes(x=PC1, y=PC2)) +
+  geom_point() +
+  labs(title="PCA Plot", x="PC1", y="PC2")
+```
+
+### Heatmap of allele frequencies
+```{r}
+allele_freq <- read.table("freq.frq", header=TRUE)
+mat <- matrix(allele_freq$MAF, ncol=1)
+rownames(mat) <- allele_freq$SNP
+pheatmap(mat, cluster_rows=TRUE, cluster_cols=FALSE, main="MAF Heatmap")
+```
+
+### ROC Curve for PRS
+```{r}
+model <- glm(case_control ~ score, data=prs, family="binomial")
+p <- predict(model, type="response")
+roc_obj <- roc(prs$case_control, p)
+plot(roc_obj, col="blue")
+auc(roc_obj)
+```
