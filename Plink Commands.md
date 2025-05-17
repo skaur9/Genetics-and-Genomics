@@ -30,16 +30,19 @@ plink --noweb --bfile dk3a_filtered --recode --tab --out dk3a_filtered_
 plink --noweb --bfile dk3a_filtered --assoc --out dk3a_filtered_assoc
 
 
+## Split Dataset by Chromosome and Convert to VCF
 
-################################
-### make one file for each chr
+### Make one file for each chromosome
 
-for chr in {1..22}; do \
-plink --bfile ../filtered_BSIG --chr $chr --make-bed --out filtered_BSIG_chr${chr}; \
-done
+  for chr in {1..22}; do \
+  plink --bfile ../filtered_BSIG --chr $chr --make-bed --out filtered_BSIG_chr${chr}; \
+  done
 
-## make vcf files
+This loop creates a separate .bed/.bim/.fam file for each autosome.
 
-for chr in {1..22}; do \
-plink --noweb --bfile filtered_BSIG_chr${chr} --recode vcf --keep-allele-order --out filtered_BSIG_chr${chr};\
-done
+### Convert BED files to VCF format
+
+  for chr in {1..22}; do \
+  plink --noweb --bfile filtered_BSIG_chr${chr} --recode vcf --keep-allele-order --out filtered_BSIG_chr${chr}; \
+  done
+
