@@ -1,4 +1,4 @@
-# Genomics Tips & Command-Line Cheatsheet
+# Essential Bash and PLINK Commands for Genetic Studies
 
 Welcome! This site provides quick-reference command-line tips, bash one-liners, and analysis workflows for genomics and genetic association studies.
 
