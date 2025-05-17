@@ -7,9 +7,7 @@ Welcome! This site provides quick-reference command-line tips, bash one-liners, 
 - 📂 [Bash One-Liners](Bash_one-liners.md)
 - 🧬 [PLINK Commands](Plink_Commands.md)
 - 📦 [VCF/BCF Tools](vcf_tools.md)
-- 🔍 [Association Testing](association_testing.md)
-- 🧮 [Imputation](imputation.md)
-- 📊 [Visualization](visualization.md)
+- 📊 [Visualization](Visualization.qmd)
 
 
 This resource is aimed at researchers working with genomic datasets, providing practical help from file handling to association testing.
